@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>game nhỏ</title>
+</head>
+<style>
+<body>{
+    text-align: center;
+    margin-top:100px;
+    font-family:arial,sans-serif;
+}
+#noBtn,#yesBtn {
+    position: absolute;
+    padding: 10px 20px;
+    font-size: 18px;
+    cursor: pointer;
+}
+#yesBtn {
+    left: 40%;
+    top: 50%;
+}
+#noBtn {
+    left: 55%;
+    top: 50%;
+}
+    </style>
+</head>
+<body>
+    <h1>I love you</h1>
+        <button id="yesBtn" onclick="alert('I love you too!')">Yes</button>
+        <button id="noBtn" onmouseover="movenobutton()">No</button>
+
+<script>
+    function movenobutton() {
+        let noBtn = document.getElementById('noBtn');
+        let maxwidth = window.innerWidth - noBtn.offsetWidth;
+        let maxheight = window.innerHeight - noBtn.offsetHeight;
+        
+        let randomx = Math.random() * maxwidth;
+        let randomy = Math.random() * maxheight;
+
+        noBtn.style.left =randomx + "px";
+        noBtn.style.top = randomy + "px";
+    }
+</script>
+</body>
+</html>
