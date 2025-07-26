@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Good-cheap-fast</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        margin-top: 50px;
+      }
+      h1 {
+        margin-bottom: 20px;
+      }
+      .options {
+        margin: 20px;
+      }
+      label {
+        font-size: 20px;
+        margin-right: 15px;
+      }
+      button {
+        padding: 10px 20px;
+        font-size: 18px;
+        cursor: pointer;
+        background: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+      }
+      button:hover {
+        background: #0056b3;
+      }
+      #result {
+        margin-top: 30px;
+        font-size: 22px;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Good-cheap-fast</h1>
+    <div class="options">
+      <label><input type="checkbox" id="good" /> good</label>
+      <label><input type="checkbox" id="cheap" /> cheap</label>
+      <label><input type="checkbox" id="fast" /> fast</label>
+    </div>
+    <button onclick="checkoptions()">kiểm tra</button>
+    <div id="result"></div>
+    <script>
+      function checkoptions() {
+        let good = document.getElementById("good").checked;
+        let cheap = document.getElementById("cheap").checked;
+        let fast = document.getElementById("fast").checked;
+        let message = "";
+        // dung if long nhau
+        if (good) {
+          if (cheap) {
+            if (fast) {
+              message = "bạn không thể có tất cả ba yếu tố này cùng một lúc";
+            } else {
+              message = "good+ cheap :nhung không nhanh";
+            }
+          } else {
+            if (fast) {
+              message = "good + fast : nhưng không rẻ";
+            } else {
+              message = "chi good : qua it lua chọn";
+            }
+          }
+        } else {
+          if (cheap) {
+            if (fast) {
+              message = "cheap+ fast :nhung không tốt";
+            } else {
+              message = "chỉ cheap : qua it lua chọn";
+            }
+          } else {
+            if (fast) {
+              message = "chỉ fast : qua it lua chọn";
+            } else {
+              message = "bạn không chọn gì cả";
+            }
+          }
+        }
+        document.getElementById("result").innerText = message;
+      }
+    </script>
+  </body>
+</html>
