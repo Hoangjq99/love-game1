@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>đổi độ c sang độ f</title>
+</head>
+<body>
+    <h2>Đổi độ C sang độ F</h2>
+    <input type="number" id="celsius" placeholder="Nhập độ C">
+    <button onclick="convertCF()">Chuyển đổi</button>
+    <div id="result"></div>
+    <script>
+        function convertCF() {
+            var c = parseFloat(document.getElementById('celsius').value);
+            if (isNaN(c)) {
+                document.getElementById('result').innerText = 'Vui lòng nhập số độ C.';
+                return;
+            }
+            var f = c * 9 / 5 + 32;
+            document.getElementById('result').innerText = c + '°C = ' + f.toFixed(2) + '°F';
+        }
+    </script>
+</body>
+</html>
