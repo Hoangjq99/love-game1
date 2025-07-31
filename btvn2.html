@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>đến số >=10</title>
+  </head>
+  <body>
+    <h1>đếm số nguyên lớn hơn bằng 10</h1>
+    <div id="result"></div>
+    <script>
+      //khoi tao mang 10 phan tu
+      const numbers = [3,15,7,22,9,10,18,4,30,12];
+      // dem so phan tu >= 10
+      let count = 0;
+      for (let i = 0; i < numbers.length; i++) {
+        if (numbers[i] >= 10) {
+          count++;
+        }
+      }
+      document.getElementById("result").innerHTML =
+        "Mảng: " + numbers.join(", ") + "<br> Số phần tử >= 10 là: " + count;
+    </script>
+  </body>
+</html>
