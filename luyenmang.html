@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bai 2 -mang2</title>
+</head>
+<body>
+    <script>
+      // Khởi tạo mảng 10 phần tử
+      var arr = [12, 45, 7, 23, 89, 34, 561, 78, 15, 100];
+      // Tìm giá trị lớn nhất và vị trí
+      var max_value = arr[0];
+      var position = 0;
+      for (var i = 1; i < arr.length; i++) {
+        if (arr[i] > max_value) {
+          max_value = arr[i];
+          position = i;
+        }
+      }
+      // Hiển thị kết quả
+      document.write("Mảng: " + arr.join(", ") + "<br>");
+      document.write("Giá trị lớn nhất của mảng là: " + max_value + "<br>");
+      document.write("Vị trí của phần tử lớn nhất là: " + position);
+    </script>
+</body>
+</html>
