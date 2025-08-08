@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Do f-DO c</title>
+</head>
+<body>
+    <h2>Chuyển đổi độ F sang độ C</h2>
+    <input type="number" id="inputF" placeholder="Nhập độ F">
+    <button onclick="temperatureConverter()">Chuyển đổi</button>
+    <p>Kết quả: <span id="outputcelius"></span></p>
+    <script>
+        function temperatureConverter() {
+            let valnum = document.getElementById("inputF").value;
+            valnum = parseFloat(valnum);
+            if (isNaN(valnum)) {
+                document.getElementById("outputcelius").innerHTML = "Vui lòng nhập số hợp lệ";
+            } else {
+                document.getElementById("outputcelius").innerHTML = ((valnum - 32) / 1.8).toFixed(2) + " °C";
+            }
+        }
+    </script>
+</body>
+</html>
