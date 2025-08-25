@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Giỏ hàng đơn giản</title>
+    <style>
+      body {
+        font-family: Arial;
+        padding: 20px;
+      }
+      h2 {
+        color: darkblue;
+      }
+      input,
+      button {
+        margin: 5px;
+        padding: 5px;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+      }
+      th,
+      td {
+        border: 1px solid gray;
+        padding: 8px;
+        text-align: center;
+      }
+      th {
+        background: #f2f2f2;
+      }
+      .btn {
+        cursor: pointer;
+        padding: 5px 10px;
+        border-radius: 5px;
+      }
+      .edit {
+        background: orange;
+        color: white;
+      }
+      .delete {
+        background: red;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>🛒 Giỏ hàng đơn giản</h2>
+
+    <input type="text" id="name" placeholder="Tên sản phẩm" />
+    <input type="number" id="price" placeholder="Giá" />
+    <input type="number" id="quantity" placeholder="Số lượng" />
+    <button onclick="cart.addItem()">Thêm sản phẩm</button>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Tên</th>
+          <th>Giá</th>
+          <th>Số lượng</th>
+          <th>Tổng</th>
+          <th>Hành động</th>
+        </tr>
+      </thead>
+      <tbody id="cart-body"></tbody>
+    </table>
+
+    <h3>Tổng cộng: <span id="total">0</span> đ</h3>
+
+    <script>
+      class Product {
+        constructor(name, price, quantity) {
+          this.name = name;
+          this.price = price;
+          this.quantity = quantity;
+        }
+        getTotal() {
+          return this.price * this.quantity;
+        }
+      }
+
+      class Cart {
+        constructor() {
+          this.items = [];
+        }
+
+        addItem() {
+          const name = document.getElementById("name").value;
+          const price = parseInt(document.getElementById("price").value);
+          const quantity = parseInt(document.getElementById("quantity").value);
+
+          if (!name || !price || !quantity) {
+            alert("Vui lòng nhập đầy đủ!");
+            return;
+          }
+
+          this.items.push(new Product(name, price, quantity));
+          this.render();
+          this.clearForm();
+        }
+
+        deleteItem(index) {
+          this.items.splice(index, 1);
+          this.render();
+        }
+
+        editItem(index) {
+          let newName = prompt("Nhập tên mới:", this.items[index].name);
+          let newPrice = prompt("Nhập giá mới:", this.items[index].price);
+          let newQuantity = prompt(
+            "Nhập số lượng mới:",
+            this.items[index].quantity
+          );
+
+          if (newName && newPrice && newQuantity) {
+            this.items[index].name = newName;
+            this.items[index].price = parseInt(newPrice);
+            this.items[index].quantity = parseInt(newQuantity);
+            this.render();
+          } else {
+            alert("Bạn phải nhập đầy đủ thông tin!");
+          }
+        }
+
+        render() {
+          const tbody = document.getElementById("cart-body");
+          tbody.innerHTML = "";
+          let total = 0;
+
+          this.items.forEach((item, index) => {
+            total += item.getTotal();
+            tbody.innerHTML += `
+            <tr>
+              <td>${item.name}</td>
+              <td>${item.price}</td>
+              <td>${item.quantity}</td>
+              <td>${item.getTotal()}</td>
+              <td>
+                <button class="btn edit" onclick="cart.editItem(${index})">Sửa</button>
+                <button class="btn delete" onclick="cart.deleteItem(${index})">Xóa</button>
+              </td>
+            </tr>
+          `;
+          });
+
+          document.getElementById("total").innerText = total;
+        }
+
+        clearForm() {
+          document.getElementById("name").value = "";
+          document.getElementById("price").value = "";
+          document.getElementById("quantity").value = "";
+        }
+      }
+
+      const cart = new Cart();
+    </script>
+  </body>
+</html>
